@@ -76,8 +76,8 @@ class ReviewPanel(discord.ui.View):
                 name=f"review-{interaction.user.id}",
                 category=category if isinstance(category, discord.CategoryChannel) else None,
                 overwrites=overwrites,
-                topic="Private review submission. Do not share this channel publicly.",
-                reason="Private anonymous feedback submission",
+                topic="review submission. Do not share this channel publicly.",
+                reason="feedback submission",
             )
         except discord.Forbidden:
             return await interaction.response.send_message(
@@ -86,7 +86,7 @@ class ReviewPanel(discord.ui.View):
             )
 
         await interaction.response.send_message(
-            f"Your private submission channel is ready: {private_channel.mention}\n"
+            f"Your submission channel is ready: {private_channel.mention}\n"
             "Only you and the bot can see it. Send **one message** containing your review text "
             "and optionally attach an image, then press **Publish Review** below. "
             "Your Discord identity will not be included in the public post.",
@@ -101,12 +101,11 @@ class ReviewPanel(discord.ui.View):
                 "1. Send your review as a message in this private channel.\n"
                 "2. You may attach one image (optional, max 10 MB).\n"
                 "3. Press **Publish Review** below.\n\n"
-                "The public post will contain only your review and image — not your name, username, "
-                "avatar, or Discord tag."
+                
             ),
             color=discord.Color.from_rgb(139, 64, 255),
         )
-        embed.set_footer(text=f"{BRAND_NAME} • Anonymous Feedback")
+        embed.set_footer(text=f"{BRAND_NAME} •  Feedback")
         await private_channel.send(embed=embed, view=PrivateReviewControls())
         await private_channel.send(
             f"{interaction.user.mention} **Send your review in your next message.** "
@@ -183,7 +182,7 @@ class PrivateReviewControls(discord.ui.View):
         )
         if image_url:
             public_embed.set_image(url=image_url)
-        public_embed.set_footer(text=f"{BRAND_NAME} • Anonymous Feedback")
+        public_embed.set_footer(text=f"{BRAND_NAME} • Feedback")
 
         try:
             await target.send(
@@ -246,7 +245,7 @@ async def on_ready():
     print(f"Logged in as {bot.user}.")
 
 
-@bot.tree.command(name="setup_feedback", description="Post the Clash Design anonymous feedback panel")
+@bot.tree.command(name="setup_feedback", description="Post the Clash Design feedback panel")
 @app_commands.checks.has_permissions(manage_guild=True)
 async def setup_feedback(interaction: discord.Interaction):
     channel = interaction.guild.get_channel(PANEL_CHANNEL_ID) if interaction.guild and configured(PANEL_CHANNEL_ID) else interaction.channel
@@ -260,12 +259,9 @@ async def setup_feedback(interaction: discord.Interaction):
         description=(
             "We value your feedback! 💜\n\n"
             "Share your experience with our bases and services. Your feedback helps us improve and grow.\n\n"
-            "🟣 Fast Delivery\n"
-            "🟣 High Quality Bases\n"
-            "🟣 Professional Service\n"
-            "🟣 Secure & Reliable\n\n"
-            "Click **Leave Review** to submit your review privately. You can attach an image if you want. "
-            "The public feedback channel will show only your review and image."
+           
+            "Click **Leave Review** to submit your review . You can attach an image if you want. "
+            "The  feedback channel will show only your review and image."
         ),
         color=discord.Color.from_rgb(139, 64, 255),
     )

@@ -84,7 +84,7 @@ class ReviewModal(discord.ui.Modal, title="Leave a Review"):
             color=discord.Color.from_rgb(139, 64, 255),
         )
         embed.add_field(name="Rating", value="⭐ ⭐ ⭐ ⭐ ⭐", inline=False)
-        embed.set_footer(text=f"{BRAND_NAME} • Anonymous Feedback")
+        embed.set_footer(text=f"{BRAND_NAME} • Feedback")
         if file_to_send and image_name:
             embed.set_image(url=f"attachment://{image_name}")
 
@@ -105,7 +105,7 @@ class ReviewModal(discord.ui.Modal, title="Leave a Review"):
             )
 
         await interaction.response.send_message(
-            "💜 Thank you! Your review has been posted anonymously in the feedback channel.",
+            "💜 Thank you! Your review has been posted in the feedback channel.",
             ephemeral=True,
         )
 

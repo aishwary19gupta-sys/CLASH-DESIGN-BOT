@@ -139,7 +139,7 @@ async def on_ready():
     print(f"Logged in as {bot.user}.")
 
 
-@bot.tree.command(name="setup_feedback", description="Post the Clash Design anonymous feedback panel")
+@bot.tree.command(name="setup_feedback", description="Post the Clash Design feedback panel")
 @app_commands.checks.has_permissions(manage_guild=True)
 async def setup_feedback(interaction: discord.Interaction):
     channel = (
@@ -158,10 +158,9 @@ async def setup_feedback(interaction: discord.Interaction):
         description=(
             "We value your feedback! 💜\n\n"
             "Share your experience with our bases and services. Your feedback helps us improve and grow.\n\n"
-            "🟣 Fast Delivery\n🟣 High Quality Bases\n"
-            "🟣 Professional Service\n🟣 Secure & Reliable\n\n"
-            "Click **Leave Review** to open the review form. Write your feedback and optionally upload an image. "
-            "Only the review and image will be posted in #feedback."
+          
+            "Click **Leave Review** to open the review form. Write your feedback Thank You. "
+            
         ),
         color=discord.Color.from_rgb(139, 64, 255),
     )
